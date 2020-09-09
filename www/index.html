@@ -5,10 +5,34 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <!-- add stuff for html5 audio, testing kybrd player -->
+        <script src="audiosynth.js"></script>
+        <script src="audiosynth-view.js"></script>
     </head>
     <body>
       <div id="top" class="page" role="document">
     <header role="banner">
+      <h1>HTML Audio Test</h1>
+      <p>try it...</p><br />
+      <div class="keyboard-options">
+        Sound
+        <select ID="sound">
+        	<option value="0" selected>Keyboard</option>
+        	<option value="1">Organ</option>
+            <option value="2">Acoustic Guitar</option>
+            <option value="3">EDM, bro!</option>
+        </select>
+        <div ID="keyboard" class="keyboard-holder"></div>
+        <div class="keyboard-options">
+        Range [C<span ID="OCTAVE_LOWER">3</span>-B<span ID="OCTAVE_UPPER">5</span>]
+        <input type="button" ID="-_OCTAVE" value="-" />
+        <input type="button" ID="+_OCTAVE" value="+" /><br />
+        <i>(Use left/right arrows to adjust with keyboard)</i>
+        <br /><br />
+        <p>End of Audio synth test area</p>
+        <br /><br />
+      </div>
+
       <h1>HTML5 Test Page</h1>
       <p>This is a test page filled with common HTML elements to be used to provide visual feedback whilst building CSS systems and frameworks.</p>
     </header>
@@ -419,5 +443,12 @@ p q r s t u v w x y z { | } ~ </pre>
         </form>
       </section>
     </main>
+    <!-- footer area, last call for js etc. -->
+
+    <script type="text/javascript">
+      var a = new AudioSynthView();
+      a.draw();
+    </script>
+
     </body>
 </html>
