@@ -2,11 +2,17 @@
 
 Basic HelloWorld app.
 
-Currently testing some things with HTML 5 and hopefully audio.
+Currently testing some things with HTML 5 and mainly audio.
 
 Using LinuxMint 20, Atom Editor, Clickable UT etc to create some test apps for PinePhone Community Edition (2gb, PostmarketOS) now running UBports from the eMMC.
 
 This will hopefully serve as a template for some utility/helper app/webapps for installing on the pinephone.
+
+**TODO**
+- make a nav bar with index.html, audiosynth.html
+- import p5.js and make an audio demo p5audio.html page
+- make a graphics p5graphics.html page
+- mic access, headphone switching/access
 
 ## License
 
