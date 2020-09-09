@@ -2,6 +2,8 @@
 
 Basic HelloWorld app.
 
+Currently testing some things with HTML 5 and hopefully audio.
+
 Using LinuxMint 20, Atom Editor, Clickable UT etc to create some test apps for PinePhone Community Edition (2gb, PostmarketOS) now running UBports from the eMMC.
 
 This will hopefully serve as a template for some utility/helper app/webapps for installing on the pinephone.

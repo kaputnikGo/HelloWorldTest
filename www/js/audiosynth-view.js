@@ -1,9 +1,12 @@
-// also source from https://keithwhor.github.io/audiosynth/ 
+// also source from https://keithwhor.github.io/audiosynth/
 
 function AudioSynthView() {
 
-	var isMobile = !!navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i);
-	if(isMobile) { var evtListener = ['touchstart', 'touchend']; } else { var evtListener = ['mousedown', 'mouseup']; }
+	//var isMobile = !!navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i);
+	//if(isMobile) { var evtListener = ['touchstart', 'touchend']; } else { var evtListener = ['mousedown', 'mouseup']; }
+	// hardcode for Pinephone demo
+	var isMobile = true;
+	var evtListener = ['touchstart', 'touchend'];
 
 	var __audioSynth = new AudioSynth();
 	__audioSynth.setVolume(0.5);

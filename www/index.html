@@ -13,10 +13,6 @@
         -->
         <style>
 
-	body {
-		background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAAM0lEQVQIW2P8DwQMMPDwIAODvD2YxwiXQBJESKAJQiQeHPgP0w43EsUoZFGgCQg70BwAANTgIZHym5jNAAAAAElFTkSuQmCC') repeat;
-		 }
-
 	b { font-weight: bold; }
 
 	.key { position: absolute; font-family: Helvetica; font-weight: 100; font-size: 12px;
@@ -48,7 +44,7 @@
 	.keyboard-options { margin: 30px auto; width: auto; text-align: center; font-size: 12px; font-weight: 200; padding:10px; }
 
 	.keyboard-holder { margin: 30px auto; height: 200px; position:relative; user-select:none; -webkit-user-select:none;-moz-user-select:none;-o-user-select:none; }
-	
+
 	.image { border: 1px solid rgba(32,32,32,0.2); color: rgb(32,32,32); font-family: Courier New, Courier, monospace; font-size: 12px; white-space:pre; padding: 10px; margin: 10px; text-align: center; }
 
 </style>
@@ -58,6 +54,13 @@
     <body>
       <div id="top" class="page" role="document">
     <header role="banner">
+      <h1>Simple js test</h1>
+      <p>Math.PI returns the ratio of a circle's circumference to its diameter:</p>
+      <p id="jsdemo"></p>
+      <script>
+        document.getElementById("jsdemo").innerHTML = Math.PI;
+      </script>
+      <br /><br />
       <h1>HTML Audio Test</h1>
       <p>try it...</p><br />
       <div class="keyboard-options">
@@ -65,8 +68,8 @@
         <select ID="sound">
         	<option value="0" selected>Keyboard</option>
         	<option value="1">Organ</option>
-            <option value="2">Acoustic Guitar</option>
-            <option value="3">EDM, bro!</option>
+            <option value="2">Guitar</option>
+            <option value="3">Synth</option>
         </select>
         <div ID="keyboard" class="keyboard-holder"></div>
         <div class="keyboard-options">
@@ -76,6 +79,7 @@
         <i>(Use left/right arrows to adjust with keyboard)</i>
         <br /><br />
         <p>End of Audio synth test area</p>
+        <hr />
         <br /><br />
       </div>
 
