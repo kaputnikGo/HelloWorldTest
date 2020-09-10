@@ -16,6 +16,7 @@ This will hopefully serve as a template for some utility/helper app/webapps for 
 - nav bar with index.html, audiosynth.html etc
 - import p5.js and make an audio demo pages
 - add flocking test page
+- add fps to sketches
 
 ## License
 

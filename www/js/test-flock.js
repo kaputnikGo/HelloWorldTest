@@ -24,6 +24,7 @@ function setup() {
 
 function draw() {
   background(51);
+  text(int(getFrameRate()) + " fps", 10, 16); 
   flock.run();
 }
 

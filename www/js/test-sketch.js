@@ -22,7 +22,7 @@ function setup() {
 
 function draw() {
   background(255);
-
+  text(int(getFrameRate()) + " fps", 10, 16); 
   let waveform = fft.waveform(); // analyze the waveform
   beginShape();
   strokeWeight(5);
