@@ -8,6 +8,9 @@ Using LinuxMint 20, Atom Editor, Clickable UT etc to create some test apps for P
 
 This will hopefully serve as a template for some utility/helper app/webapps for installing on the pinephone.
 
+**VERSION**
+1.0.4
+
 **TODO**
 - test mic access via p5js
 - zero crossings at freq changes
@@ -17,6 +20,7 @@ This will hopefully serve as a template for some utility/helper app/webapps for 
 - import p5.js and make an audio demo pages
 - add flocking test page
 - add fps to sketches
+- add mic test page
 
 ## License
 

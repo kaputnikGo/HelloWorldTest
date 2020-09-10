@@ -9,7 +9,7 @@
             "desktop":  "helloworldtest.desktop"
         }
     },
-    "version": "1.0.3",
+    "version": "1.0.4",
     "maintainer": "Kaputnik Go <kaputnikgo@tutanota.com>",
     "framework" : "ubuntu-sdk-16.04"
 }
