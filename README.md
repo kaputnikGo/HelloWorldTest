@@ -8,6 +8,8 @@ Using LinuxMint 20, Atom Editor, Clickable UT etc to create some test apps for P
 
 This will hopefully serve as a template for some utility/helper app/webapps for installing on the pinephone.
 
+Releases are not for release but simply a clumsy way of installing .click file on the device via www instead of using adb
+
 **VERSION**
 1.0.4
 
