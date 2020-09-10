@@ -15,6 +15,8 @@ Releases are not for release but simply a clumsy way of installing .click file o
 
 **TODO**
 - test mic access via p5js
+- stuck at mic perms for app not working on device
+  - reports as being from "file:///", can't tell if true yet 
 - zero crossings at freq changes
 
 **CHANGES**
