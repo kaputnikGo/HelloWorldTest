@@ -19,7 +19,7 @@ function setup() {
 
 function draw() {
   background(200);
-
+  text(int(getFrameRate()) + " fps", 10, 16);
   let spectrum = fft.analyze();
 
   beginShape();
