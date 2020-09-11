@@ -94,6 +94,7 @@ function setup() {
 
 function draw() {
   background(30);
+  text(int(getFrameRate()) + " fps", 10, 16);
 
   // map mouseY to modulator freq between a maximum and minimum frequency
   let modFreq = map(mouseY, height, 0, modMinFreq, modMaxFreq);
@@ -121,16 +122,16 @@ function draw() {
 
   strokeWeight(1);
   // add a note about what's happening
-  text('Modulator Frequency: ' + modFreq.toFixed(3) + ' Hz', 20, 20);
+  text('Modulator Frequency: ' + modFreq.toFixed(3) + ' Hz', 20, 32);
   text(
     'Modulator Amplitude (Modulation Depth): ' + modDepth.toFixed(3),
     20,
-    40
+    52
   );
   text(
     'Carrier Frequency (pre-modulation): ' + carrierBaseFreq + ' Hz',
     width / 2,
-    20
+    32
   );
 }
 
