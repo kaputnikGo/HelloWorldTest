@@ -10,11 +10,13 @@
 let audioCtx, audioIn, mediaInfo;
 // reporting primitive vars
 let inReport, devReport, ctxReport, userSource, autoSource;
+// some global vars
+let samRate, mainVol, micLevel, afterMicLvl;
 // audio device reporting vars
 let deviceID, deviceLabel, deviceGroup, deviceKind;
 
 function setup() {
-  createCanvas(710, 400);
+  createCanvas(700, 400);
   // should return the AudioContext Object
   audioCtx = getAudioContext();
   // test it by checking state
@@ -28,6 +30,20 @@ function setup() {
   audioIn.getSources(listSources);
   // try get some details about it
   audioIn.getSources(infoSource);
+
+  samRate = sampleRate();
+  mainVol = getMasterVolume(); // 0.0 - 1.0
+  if (mainVol >= 0.1) {
+    mainVol *= 100;
+  }
+  //  AudioIn must .start() before using .getLevel()
+  audioIn.start();
+  micLevel = audioIn.getLevel(); // 0.0 to 1.0
+  if (micLevel >= 0.1) {
+    micLevel *= 100;
+  }
+  // set the updater var
+  afterMicLvl = -1;
 
 }
 // deviceList is part of the audioIn object...
@@ -66,19 +82,22 @@ function infoSource(sourceList) {
 
 }
 
-/*
+// touchStarted(), mousePressed()
 function touchStarted() {
   if (audioCtx.state !== "running") {
     audioCtx.resume();
   }
-  //var synth = new p5.MonoSynth();
-  //synth.play('A4', 0.5, 0, 0.2);
+  afterMicLvl = audioIn.getLevel();
+  if (afterMicLvl >= 0.1) {
+    afterMicLvl *= 100;
+  }
+  return false;
 }
-*/
 
 function draw() {
   background(200);
   text(int(getFrameRate()) + " fps", 10, 16);
+  // input vars here
   text("inReport: " + inReport, 10, 48);
   text("devReport: " + devReport, 10, 64);
   text("ctxReport: " + ctxReport, 10, 80);
@@ -89,4 +108,9 @@ function draw() {
   text("deviceLabel: " + deviceLabel, 10, 160);
   text("deviceGroup: " + deviceGroup, 10, 176);
   text("deviceKind: " + deviceKind, 10, 192);
+  text("micLevel: " + micLevel, 10, 208);
+  text("after micLvl: " + afterMicLvl, 10, 224);
+  // output vars here
+  text("sampleRate: " + samRate, 10 , 240);
+  text("main vol: " + mainVol, 10, 256);
 }

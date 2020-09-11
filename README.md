@@ -11,7 +11,7 @@ This will hopefully serve as a template for some utility/helper app/webapps for 
 Releases are not for release but simply a clumsy way of installing .click file on the device via www instead of using adb
 
 **VERSION**
-1.0.5
+1.0.6
 
 **TODO**
 - test mic access via p5js
@@ -26,6 +26,7 @@ Releases are not for release but simply a clumsy way of installing .click file o
 - add fps to sketches
 - add mic test page
 - audioIn info page
+- add P5js FM synth page
 
 ## License
 
