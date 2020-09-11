@@ -91,7 +91,7 @@ function enumSources(pinePhoneList) {
     // get their MediaDeviceInfo objects
     pineAudio0 = pinePhoneList[0];
     pineAudio1 = pinePhoneList[1];
-    pineAudio2 = pinePhoneList[2];  
+    pineAudio2 = pinePhoneList[2];
   }
 }
 
@@ -130,7 +130,10 @@ function draw() {
   text("main vol: " + mainVol, 10, 256);
   // mediaDeviceInfo for the 3 sources
   text("audioDevice0 kind: " + pineAudio0.kind, 10, 300);
-  text("audioDevice1 kind: " + pineAudio1.kind, 10, 316);
-  text("audioDevice2 kind: " + pineAudio2.kind, 10, 332);
+  text("audioDevice0 ID: " + pineAudio0.deviceId, 10, 316);
+  text("audioDevice1 kind: " + pineAudio1.kind, 10, 332);
+  text("audioDevice1 ID: " + pineAudio1.deviceId, 10, 348);
+  text("audioDevice2 kind: " + pineAudio2.kind, 10, 364);
+  text("audioDevice2 ID: " + pineAudio2.deviceId, 10, 380);
 
 }
