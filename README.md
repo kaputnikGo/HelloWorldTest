@@ -19,6 +19,7 @@ Releases are not for release but simply a clumsy way of installing .click file o
   - reports as being from "file:///", can't tell if true yet
 - zero crossings at freq changes
 - add fps counter val to an oscillator...
+- adb install to device ffs
 
 **CHANGES**
 - nav bar with index.html, audiosynth.html etc
