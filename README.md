@@ -18,6 +18,7 @@ Releases are not for release but simply a clumsy way of installing .click file o
 - stuck at mic perms for app not working on device
   - reports as being from "file:///", can't tell if true yet
 - zero crossings at freq changes
+- add fps counter val to an oscillator...
 
 **CHANGES**
 - nav bar with index.html, audiosynth.html etc

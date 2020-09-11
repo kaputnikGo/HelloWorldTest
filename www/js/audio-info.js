@@ -14,6 +14,8 @@ let inReport, devReport, ctxReport, userSource, autoSource;
 let samRate, mainVol, micLevel, afterMicLvl;
 // audio device reporting vars
 let deviceID, deviceLabel, deviceGroup, deviceKind;
+// pinephone has 3 sources, get info on them
+let pineAudio0, pineAudio1, pineAudio2;
 
 function setup() {
   createCanvas(700, 400);
@@ -30,6 +32,9 @@ function setup() {
   audioIn.getSources(listSources);
   // try get some details about it
   audioIn.getSources(infoSource);
+  // after the above has run, enum the device(3)
+  // hardcode for pinephone?
+  audioIn.getSources(enumSources);
 
   samRate = sampleRate();
   mainVol = getMasterVolume(); // 0.0 - 1.0
@@ -44,7 +49,6 @@ function setup() {
   }
   // set the updater var
   afterMicLvl = -1;
-
 }
 // deviceList is part of the audioIn object...
 function listSources(deviceList) {
@@ -58,7 +62,7 @@ function listSources(deviceList) {
     devReport = "1";
   }
   else {
-    // line-in and mic-in, therefore diff qualities?
+    // line-in and mic-in, etc, therefore diff qualities
     devReport = (int(numDevices));
   }
 }
@@ -79,7 +83,16 @@ function infoSource(sourceList) {
   deviceGroup = mediaInfo.groupId; // UUID
   // can be audioinput, audiooutput, videoinput
   deviceKind = mediaInfo.kind; // object with string return
+}
 
+function enumSources(pinePhoneList) {
+  // assuming 3 sources in pinephone
+  if (pinePhoneList.length == 3) {
+    // get their MediaDeviceInfo objects
+    pineAudio0 = pinePhoneList[0];
+    pineAudio1 = pinePhoneList[1];
+    pineAudio2 = pinePhoneList[2];  
+  }
 }
 
 // touchStarted(), mousePressed()
@@ -93,6 +106,8 @@ function touchStarted() {
   }
   return false;
 }
+
+/***************************************************************/
 
 function draw() {
   background(200);
@@ -113,4 +128,9 @@ function draw() {
   // output vars here
   text("sampleRate: " + samRate, 10 , 240);
   text("main vol: " + mainVol, 10, 256);
+  // mediaDeviceInfo for the 3 sources
+  text("audioDevice0 kind: " + pineAudio0.kind, 10, 300);
+  text("audioDevice1 kind: " + pineAudio1.kind, 10, 316);
+  text("audioDevice2 kind: " + pineAudio2.kind, 10, 332);
+
 }
