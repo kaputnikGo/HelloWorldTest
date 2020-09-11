@@ -11,12 +11,12 @@ This will hopefully serve as a template for some utility/helper app/webapps for 
 Releases are not for release but simply a clumsy way of installing .click file on the device via www instead of using adb
 
 **VERSION**
-1.0.4
+1.0.5
 
 **TODO**
 - test mic access via p5js
 - stuck at mic perms for app not working on device
-  - reports as being from "file:///", can't tell if true yet 
+  - reports as being from "file:///", can't tell if true yet
 - zero crossings at freq changes
 
 **CHANGES**
@@ -25,6 +25,7 @@ Releases are not for release but simply a clumsy way of installing .click file o
 - add flocking test page
 - add fps to sketches
 - add mic test page
+- audioIn info page
 
 ## License
 
