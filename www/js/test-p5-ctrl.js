@@ -68,7 +68,8 @@ function applyStyle(buttonIn) {
   buttonIn.size(btnW, btnH);
   buttonIn.style("padding:4px");
   buttonIn.style("background-color:BLACK");
-  buttonIn.style("border:none");
+  buttonIn.style("border:solid");
+  buttonIn.style("border-color:RED");
   buttonIn.style("color:white");
   buttonIn.style("text-align:left");
   buttonIn.style("text-decoration:none");

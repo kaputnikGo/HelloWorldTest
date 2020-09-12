@@ -9,34 +9,32 @@ Using LinuxMint 20, Atom Editor, Clickable UT etc to create some test apps for P
 This will hopefully serve as a template for some utility/helper app/webapps for installing on the pinephone.
 
 **NOTES**
-- Releases are not for release but simply a clumsy way of installing .click file on the device via www instead of using adb/ssh
-- pinephone P5 screen width: 700
-- minimal P5 touch diameter: 32 ?
+- Releases are simply a clumsy way of installing .click file on device via www instead of using adb/ssh
+- pinephone P5 canvas screen width: 700
+- minimal P5 touch diameter: 60
 - holding touch on P5 results in long-touch OS popup of "save image..."
+- DOM objects position relative to phone screen origin, not P5 canvas
 
 **VERSION**
 1.0.7
 
 **TODO**
+- css to navbar
 - adb/ssh install to device ffs
-- get screen dimensions for P5 as constants
 - UI controls in P5 for audio routing etc
 - audio out info (sep page?)
 - test mic access via p5js
 - stuck at mic perms for app not working on device
   - reports as being from "file:///", can't tell if true yet
 - zero crossings at freq changes
+- glitches in output sounds like buffer errors
 - add fps counter val to an oscillator...
 
 **CHANGES**
-- nav bar with index.html, audiosynth.html etc
-- import p5.js and make an audio demo pages
-- add flocking test page
-- add fps to sketches
-- add mic test page
-- audioIn info page
-- add P5js FM synth page
-- touch controls page
+- nav bar, multiple pages for separate functions
+- different sound tests, touch control tests
+- audio reporting page
+- P5 function css styles apply
 
 ## License
 

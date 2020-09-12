@@ -186,6 +186,7 @@ function draw() {
   // output vars here
   text("sampleRate: " + samRate, 10 , 240);
   text("main vol: " + mainVol, 10, 256);
+  text("freq: " + freq, 10, 272);
   // mediaDeviceInfo for the 3 sources
   text("audioDevice0 kind: " + pineAudio0.kind, 10, 300);
   text("audioDevice0 ID: " + pineAudio0.deviceId, 10, 316);
