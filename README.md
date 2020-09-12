@@ -11,15 +11,17 @@ This will hopefully serve as a template for some utility/helper app/webapps for 
 Releases are not for release but simply a clumsy way of installing .click file on the device via www instead of using adb
 
 **VERSION**
-1.0.6
+1.0.7
 
 **TODO**
+- adb install to device ffs
+- UI controls in P5 for audio routing etc
+- audio out info (sep page?)
 - test mic access via p5js
 - stuck at mic perms for app not working on device
   - reports as being from "file:///", can't tell if true yet
 - zero crossings at freq changes
 - add fps counter val to an oscillator...
-- adb install to device ffs
 
 **CHANGES**
 - nav bar with index.html, audiosynth.html etc
