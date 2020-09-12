@@ -8,13 +8,14 @@ let cnvPos;
 let bx0, bx1, bx2, bx3;
 let by0, by1, by2, by3;
 let btn0, btn1, btn2, btn3;
-// soize of button, touch area
-let btnW = 32; // 40
-let btnH = 32; // 40
-let btnGap = 10;
+// size of button, touch area
+let btnW = 40; // 40
+let btnH = 40; // 40
+let btnGap = 16;
 let startX = 10;
 let startY = 16;
 // log a button touch
+let textX, textY;
 let resultText = "empty";
 let infoText = "empty";
 
@@ -26,6 +27,8 @@ function setup() {
   by1 = by0 + btnH + btnGap; // prev y + size + gap
   by2 = by1 + btnH + btnGap;
   by3 = by2 + btnH + btnGap;
+  textX = bx0;
+  textY = by3 + btnH + btnGap;
   // button text will overrun if width < text.length
   btn0 = createButton("b0");
   btn0.style("padding-left:0px");
@@ -81,10 +84,10 @@ function btn3Pressed() {
 function draw() {
   background(200); // gray
   text(int(getFrameRate()) + " fps", 10, 16);
-  text(resultText, bx3 + btnGap, by3 + btnH + btnH);
-  text(infoText, bx3 + btnGap, by3 + (btnH * 3));
-  text("cnvPos.x: " + cnvPos.x, 10, 270);
-  text("cnvPos.y: " + cnvPos.y, 10, 286);
+  text(resultText, textX, textY);
+  text(infoText, textX, textY + btnGap);
+  text("cnvPos.x: " + cnvPos.x, textX, textY + (2 * btnGap));
+  text("cnvPos.y: " + cnvPos.y, textX, textY + (3 * btnGap));
 }
 
 /*****************************************************/
