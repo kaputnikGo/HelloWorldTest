@@ -9,8 +9,8 @@ let bx0, bx1, bx2, bx3;
 let by0, by1, by2, by3;
 let btn0, btn1, btn2, btn3; // DOM objects
 // size of button, touch area
-let btnW = 60; // min 40
-let btnH = 60; // min 40
+let btnW = 60; // min 60
+let btnH = 60; // min 60
 let btnGap = 16;
 let startX = 10;
 let startY = 16;
@@ -23,7 +23,7 @@ function setup() {
   let canvas = createCanvas(700, 700);
   // NOTE: DOM objects position relative to the browser/device screen origin
   // not P5 canvas origin
-  
+
   // start DOM relative positioning
   cnvPos = canvas.position(); // returns canvas (x,y) relative to phone screen
   bx0 = bx1 = bx2 = bx3 = cnvPos.x + startX;
@@ -36,30 +36,45 @@ function setup() {
   textX = startX;
   textY = canvas.height * 0.5; // half way down canvas
   // button text will overrun if width < text.length
+  // need to css style the buttons as they ugly default
   btn0 = createButton("b0");
-  btn0.style("padding-left:0px");
-  btn0.size(btnW, btnH);
+  btn0 = applyStyle(btn0);
   btn0.position(bx0, by0);
 
   btn1 = createButton("b1");
-  btn1.style("padding-left:0px");
-  btn1.size(btnW, btnH);
+  btn1 = applyStyle(btn1);
   btn1.position(bx1, by1);
 
   btn2 = createButton("b2");
-  btn2.style("padding-left:0px");
-  btn2.size(btnW, btnH);
+  btn2 = applyStyle(btn2);
   btn2.position(bx2, by2);
 
   btn3 = createButton("b3");
-  btn3.style("padding-left:0px");
-  btn3.size(btnW, btnH);
+  btn3 = applyStyle(btn3);
   btn3.position(bx3, by3);
+
   // buttons call a function
   btn0.mousePressed(btn0Pressed);
   btn1.mousePressed(btn1Pressed);
   btn2.mousePressed(btn2Pressed);
   btn3.mousePressed(btn3Pressed);
+}
+
+/*****************************************************/
+
+function applyStyle(buttonIn) {
+  // return the button with new style
+  // let ylwCol = color(255, 204, 0); // rgb
+  buttonIn.size(btnW, btnH);
+  buttonIn.style("padding:4px");
+  buttonIn.style("background-color:BLUE");
+  buttonIn.style("border:none");
+  buttonIn.style("color:white");
+  buttonIn.style("text-align:left");
+  buttonIn.style("text-decoration:none");
+  buttonIn.style("display:inline-block");
+  buttonIn.style("font-size:16px");
+  return buttonIn;
 }
 
 /*****************************************************/
