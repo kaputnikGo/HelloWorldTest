@@ -67,7 +67,7 @@ function applyStyle(buttonIn) {
   // let ylwCol = color(255, 204, 0); // rgb
   buttonIn.size(btnW, btnH);
   buttonIn.style("padding:4px");
-  buttonIn.style("background-color:BLUE");
+  buttonIn.style("background-color:BLACK");
   buttonIn.style("border:none");
   buttonIn.style("color:white");
   buttonIn.style("text-align:left");
