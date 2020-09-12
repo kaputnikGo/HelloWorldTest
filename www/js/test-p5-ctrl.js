@@ -3,6 +3,7 @@
  * @description test clicks on control boxes.
  */
 
+let cnvPos;
 // box position vars
 let bx0, bx1, bx2, bx3;
 let by0, by1, by2, by3;
@@ -18,9 +19,10 @@ let resultText = "empty";
 let infoText = "empty";
 
 function setup() {
-  createCanvas(700, 400);
+  let canvas = createCanvas(700, 700);
+  cnvPos = canvas.position();
   bx0 = bx1 = bx2 = bx3 = startX;
-  by0 = startY;
+  by0 = startY; // account for P5 canvas, else it rel to phone screen
   by1 = by0 + btnH + btnGap; // prev y + size + gap
   by2 = by1 + btnH + btnGap;
   by3 = by2 + btnH + btnGap;
@@ -81,6 +83,8 @@ function draw() {
   text(int(getFrameRate()) + " fps", 10, 16);
   text(resultText, bx3 + btnGap, by3 + btnH + btnH);
   text(infoText, bx3 + btnGap, by3 + (btnH * 3));
+  text("cnvPos.x: " + cnvPos.x, 10, 270);
+  text("cnvPos.y: " + cnvPos.y, 10, 286);
 }
 
 /*****************************************************/

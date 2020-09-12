@@ -24,7 +24,7 @@ let destChannel;
 let osc, playing, freq, amp;
 
 function setup() {
-  let canvas = createCanvas(700, 400);
+  let canvas = createCanvas(700, 800);
   canvas.mousePressed(playOscillator);
   // should return the AudioContext Object
   audioCtx = getAudioContext();
