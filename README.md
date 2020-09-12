@@ -8,13 +8,18 @@ Using LinuxMint 20, Atom Editor, Clickable UT etc to create some test apps for P
 
 This will hopefully serve as a template for some utility/helper app/webapps for installing on the pinephone.
 
-Releases are not for release but simply a clumsy way of installing .click file on the device via www instead of using adb
+**NOTES**
+- Releases are not for release but simply a clumsy way of installing .click file on the device via www instead of using adb/ssh
+- pinephone P5 screen width: 700
+- minimal P5 touch diameter: 32 ?
+- holding touch on P5 results in long-touch OS popup of "save image..."
 
 **VERSION**
 1.0.7
 
 **TODO**
-- adb install to device ffs
+- adb/ssh install to device ffs
+- get screen dimensions for P5 as constants
 - UI controls in P5 for audio routing etc
 - audio out info (sep page?)
 - test mic access via p5js
@@ -31,6 +36,7 @@ Releases are not for release but simply a clumsy way of installing .click file o
 - add mic test page
 - audioIn info page
 - add P5js FM synth page
+- touch controls page
 
 ## License
 

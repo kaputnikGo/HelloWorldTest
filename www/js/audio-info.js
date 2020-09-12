@@ -7,7 +7,7 @@
  */
 
 // main sound object vars
-let audioCtx, audioIn, mediaInfo;
+let audioCtx, audioIn, audioOut, mediaInfo;
 // reporting primitive vars
 let inReport, devReport, ctxReport, userSource, autoSource;
 // some global vars
@@ -16,9 +16,16 @@ let samRate, mainVol, micLevel, afterMicLvl;
 let deviceID, deviceLabel, deviceGroup, deviceKind;
 // pinephone has 3 sources, get info on them
 let pineAudio0, pineAudio1, pineAudio2;
+// audio output switching, get speakers and headphone
+let destOut, outLatency, baseLatency;
+// output node
+let destChannel;
+// output osc vars
+let osc, playing, freq, amp;
 
 function setup() {
-  createCanvas(700, 400);
+  let canvas = createCanvas(700, 400);
+  canvas.mousePressed(playOscillator);
   // should return the AudioContext Object
   audioCtx = getAudioContext();
   // test it by checking state
@@ -49,7 +56,27 @@ function setup() {
   }
   // set the updater var
   afterMicLvl = -1;
+
+  // audio output thingies
+  outLatency = audioCtx.outputLatency; // estimation in seconds
+  baseLatency = audioCtx.baseLatency; // only read when actual audio running
+  destOut = audioCtx.destination; // is an interface objects
+  // numberOfInputs 1, numberOfOutputs 1, channelCount 2,
+  // channelCountMode "explicit",
+  // channelInterpretation "speakers",
+  // tail-time No
+  destChannel = destOut.channelInterpretation;
+  audioOut = p5.soundOut;
+
+  // output osc
+  // set up an osc for output check
+  osc = new p5.Oscillator('sine');
+  freq = 440; // pitch start
+  amp = 1.0; // full vol
 }
+
+/*********************************************************/
+
 // deviceList is part of the audioIn object...
 function listSources(deviceList) {
   let numDevices = deviceList.length;
@@ -95,6 +122,17 @@ function enumSources(pinePhoneList) {
   }
 }
 
+/***************************************************************/
+function playOscillator() {
+  // starting an oscillator on a user gesture will enable audio
+  // in browsers that have a strict autoplay policy.
+  // See also: userStartAudio();
+  osc.start();
+  playing = true;
+}
+
+/***************************************************************/
+
 // touchStarted(), mousePressed()
 function touchStarted() {
   if (audioCtx.state !== "running") {
@@ -104,7 +142,20 @@ function touchStarted() {
   if (afterMicLvl >= 0.1) {
     afterMicLvl *= 100;
   }
+  playOscillator();
   return false;
+}
+// touchMoved(), mouseDragged()
+function touchMoved() {
+  // do nothing in here:
+  // causes long-touch and OS popups
+}
+// touchEnded(), mouseReleased()
+function touchEnded() {
+  // could be useful
+  // ramp amplitude to 0 over 0.5 seconds
+  osc.amp(0, 0.5);
+  playing = false;
 }
 
 /***************************************************************/
@@ -112,6 +163,13 @@ function touchStarted() {
 function draw() {
   background(200);
   text(int(getFrameRate()) + " fps", 10, 16);
+  // osc for output
+  freq = constrain(map(mouseX, 0, width, 100, 500), 100, 500);
+  if (playing) {
+    // smooth the transitions by 0.1 seconds
+    osc.freq(freq, 0.1);
+    osc.amp(amp, 0.1);
+  }
   // input vars here
   text("inReport: " + inReport, 10, 48);
   text("devReport: " + devReport, 10, 64);
@@ -135,5 +193,7 @@ function draw() {
   text("audioDevice1 ID: " + pineAudio1.deviceId, 10, 348);
   text("audioDevice2 kind: " + pineAudio2.kind, 10, 364);
   text("audioDevice2 ID: " + pineAudio2.deviceId, 10, 380);
-
+  // output audio various
+  text("outLatency (ms): " + outLatency * 1000, 10, 400);
+  text("dest channel: " + destChannel, 10, 416);
 }

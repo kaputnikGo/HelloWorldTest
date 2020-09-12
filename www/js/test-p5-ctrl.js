@@ -1,68 +1,100 @@
 /*
  * @name Mouse Functions
- * @description test click on a box.
+ * @description test clicks on control boxes.
  */
-let bx, by;
-let boxSize = 20;
-let overBox = false;
-let locked = false;
-let xOffset = 0.0;
-let yOffset = 0.0;
+
+// box position vars
+let bx0, bx1, bx2, bx3;
+let by0, by1, by2, by3;
+let btn0, btn1, btn2, btn3;
+// soize of button, touch area
+let btnW = 32; // 40
+let btnH = 32; // 40
+let btnGap = 10;
+let startX = 10;
+let startY = 16;
+// log a button touch
+let resultText = "empty";
+let infoText = "empty";
 
 function setup() {
-  createCanvas(720, 400);
-  bx = width * 0.5;
-  by = height * 0.5;
-  rectMode(RADIUS);
-  strokeWeight(2);
+  createCanvas(700, 400);
+  bx0 = bx1 = bx2 = bx3 = startX;
+  by0 = startY;
+  by1 = by0 + btnH + btnGap; // prev y + size + gap
+  by2 = by1 + btnH + btnGap;
+  by3 = by2 + btnH + btnGap;
+  // button text will overrun if width < text.length
+  btn0 = createButton("b0");
+  btn0.style("padding-left:0px");
+  btn0.size(btnW, btnH);
+  btn0.position(bx0, by0);
+
+  btn1 = createButton("b1");
+  btn1.style("padding-left:0px");
+  btn1.size(btnW, btnH);
+  btn1.position(bx1, by1);
+
+  btn2 = createButton("b2");
+  btn2.style("padding-left:0px");
+  btn2.size(btnW, btnH);
+  btn2.position(bx2, by2);
+
+  btn3 = createButton("b3");
+  btn3.style("padding-left:0px");
+  btn3.size(btnW, btnH);
+  btn3.position(bx3, by3);
+  // buttons call a function
+  btn0.mousePressed(btn0Pressed);
+  btn1.mousePressed(btn1Pressed);
+  btn2.mousePressed(btn2Pressed);
+  btn3.mousePressed(btn3Pressed);
 }
+
+/*****************************************************/
+
+function btn0Pressed() {
+  // something
+  resultText = "btn0 touched";
+  infoText = "something 0";
+}
+function btn1Pressed() {
+  // something
+  resultText = "btn1 touched";
+  infoText = "something 1";
+}
+function btn2Pressed() {
+  // something
+  resultText = "btn2 touched";
+  infoText = "something 2";
+}
+function btn3Pressed() {
+  // something
+  resultText = "btn3 touched";
+  infoText = "something 3";
+}
+
+/*****************************************************/
 
 function draw() {
-  background(237, 34, 93);
-
-  // Test if the cursor is over the box
-  if (
-    mouseX > bx - boxSize &&
-    mouseX < bx + boxSize &&
-    mouseY > by - boxSize &&
-    mouseY < by + boxSize
-  ) {
-    overBox = true;
-    if (!locked) {
-      stroke(255);
-      fill(244, 122, 158);
-    }
-  } else {
-    stroke(156, 39, 176);
-    fill(244, 122, 158);
-    overBox = false;
-  }
-
-  // Draw the box
-  rect(bx, by, boxSize, boxSize);
+  background(200); // gray
+  text(int(getFrameRate()) + " fps", 10, 16);
+  text(resultText, bx3 + btnGap, by3 + btnH + btnH);
+  text(infoText, bx3 + btnGap, by3 + (btnH * 3));
 }
+
+/*****************************************************/
 
 // touchStarted(), mousePressed()
 function touchStarted() {
-  if (overBox) {
-    locked = true;
-    fill(255, 255, 255);
-  } else {
-    locked = false;
-  }
-  xOffset = mouseX - bx;
-  yOffset = mouseY - by;
+  // nothing yet
 }
-
 // touchMoved(), mouseDragged()
 function touchMoved() {
-  if (locked) {
-    bx = mouseX - xOffset;
-    by = mouseY - yOffset;
-  }
+  // do nothing in here:
+  // causes long-touch and OS popups
 }
-
 // touchEnded(), mouseReleased()
 function touchEnded() {
-  locked = false;
+  // could be useful
 }
