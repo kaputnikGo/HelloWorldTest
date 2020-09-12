@@ -9,8 +9,8 @@ let bx0, bx1, bx2, bx3;
 let by0, by1, by2, by3;
 let btn0, btn1, btn2, btn3; // DOM objects
 // size of button, touch area
-let btnW = 40; // 40
-let btnH = 40; // 40
+let btnW = 60; // min 40
+let btnH = 60; // min 40
 let btnGap = 16;
 let startX = 10;
 let startY = 16;
@@ -21,8 +21,10 @@ let infoText = "empty";
 
 function setup() {
   let canvas = createCanvas(700, 700);
-  // NOTE: DOM OBJECTS POSITION RELATIVE TO browser/device screen
-  // not P5 canvas
+  // NOTE: DOM objects position relative to the browser/device screen origin
+  // not P5 canvas origin
+  
+  // start DOM relative positioning
   cnvPos = canvas.position(); // returns canvas (x,y) relative to phone screen
   bx0 = bx1 = bx2 = bx3 = cnvPos.x + startX;
   by0 = cnvPos.y + startY; // account for P5 canvas, else it rel to phone screen
