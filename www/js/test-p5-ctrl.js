@@ -7,7 +7,7 @@ let cnvPos;
 // box position vars
 let bx0, bx1, bx2, bx3;
 let by0, by1, by2, by3;
-let btn0, btn1, btn2, btn3;
+let btn0, btn1, btn2, btn3; // DOM objects
 // size of button, touch area
 let btnW = 40; // 40
 let btnH = 40; // 40
@@ -21,14 +21,18 @@ let infoText = "empty";
 
 function setup() {
   let canvas = createCanvas(700, 700);
+  // NOTE: DOM OBJECTS POSITION RELATIVE TO browser/device screen
+  // not P5 canvas
   cnvPos = canvas.position(); // returns canvas (x,y) relative to phone screen
   bx0 = bx1 = bx2 = bx3 = cnvPos.x + startX;
   by0 = cnvPos.y + startY; // account for P5 canvas, else it rel to phone screen
   by1 = by0 + btnH + btnGap; // prev y + size + gap
   by2 = by1 + btnH + btnGap;
   by3 = by2 + btnH + btnGap;
-  textX = bx0;
-  textY = by3 + btnH + btnGap;
+  // end DOM relative positioning
+
+  textX = startX;
+  textY = canvas.height * 0.5; // half way down canvas
   // button text will overrun if width < text.length
   btn0 = createButton("b0");
   btn0.style("padding-left:0px");
