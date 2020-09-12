@@ -20,9 +20,9 @@ let infoText = "empty";
 
 function setup() {
   let canvas = createCanvas(700, 700);
-  cnvPos = canvas.position();
-  bx0 = bx1 = bx2 = bx3 = startX;
-  by0 = startY; // account for P5 canvas, else it rel to phone screen
+  cnvPos = canvas.position(); // returns canvas (x,y) relative to phone screen
+  bx0 = bx1 = bx2 = bx3 = cnvPos.x + startX;
+  by0 = cnvPos.y + startY; // account for P5 canvas, else it rel to phone screen
   by1 = by0 + btnH + btnGap; // prev y + size + gap
   by2 = by1 + btnH + btnGap;
   by3 = by2 + btnH + btnGap;
