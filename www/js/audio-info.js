@@ -125,24 +125,30 @@ function enumSources(pinePhoneList) {
 function getOutLatency() {
   // device getting NaN on outputLatency
   outLatency = audioCtx.outputLatency; // estimation in seconds
-  if (outLatency >= 0.1) {
+  if (outLatency == NaN) {
+    outLatency == -1;
+  }
+  else if (outLatency >= 0.001) {
     outLatency *= 1000;
   }
   else {
-    // is a NaN?
-    outLatency = -1;
+    outLatency = 0;
   }
 }
 
 function getBaseLatency() {
   // only read when actual audio running
+  // reports in secs: 0.12345678
   baseLatency = audioCtx.baseLatency;
-  if (baseLatency >= 0.1) {
+  if (baseLatency == NaN) {
+    baseLatency == -1;
+  }
+  else if (baseLatency >= 0.001) {
     baseLatency *= 1000;
   }
   else {
-    // is a NaN?
-    baseLatency = -1;
+    //
+    baseLatency = 0;
   }
 }
 
@@ -222,5 +228,5 @@ function draw() {
   // output audio various
   text("outLatency (ms): " + outLatency, 10, 400); // device has NaN
   text("dest channel: " + destChannel, 10, 416);
-  text("baseLatency (ms): " + baseLatency, 10, 432);
+  text("baseLatency (ms): " + baseLatency, 10, 432); // device has NaN
 }
