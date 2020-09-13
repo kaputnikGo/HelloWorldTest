@@ -19,7 +19,6 @@ This will hopefully serve as a template for some utility/helper app/webapps for 
 1.0.8
 
 **TODO**
-- css to navbar
 - adb/ssh install to device ffs
 - UI controls in P5 for audio routing etc
 - audio out info (sep page?)
@@ -31,7 +30,7 @@ This will hopefully serve as a template for some utility/helper app/webapps for 
 - add fps counter val to an oscillator...
 
 **CHANGES**
-- nav bar, multiple pages for separate functions
+- nav bar with clunky css, multiple pages for separate functions
 - different sound tests, touch control tests
 - audio reporting page
 - P5 function css styles apply

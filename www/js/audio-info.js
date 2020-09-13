@@ -58,8 +58,8 @@ function setup() {
   afterMicLvl = -1;
 
   // audio output thingies
-  outLatency = audioCtx.outputLatency; // estimation in seconds
-  baseLatency = audioCtx.baseLatency; // only read when actual audio running
+  getOutLatency(); // try this at setup
+  getBaseLatency();
   destOut = audioCtx.destination; // is an interface objects
   // numberOfInputs 1, numberOfOutputs 1, channelCount 2,
   // channelCountMode "explicit",
@@ -122,6 +122,30 @@ function enumSources(pinePhoneList) {
   }
 }
 
+function getOutLatency() {
+  // device getting NaN on outputLatency
+  outLatency = audioCtx.outputLatency; // estimation in seconds
+  if (outLatency >= 0.1) {
+    outLatency *= 1000;
+  }
+  else {
+    // is a NaN?
+    outLatency = -1;
+  }
+}
+
+function getBaseLatency() {
+  // only read when actual audio running
+  baseLatency = audioCtx.baseLatency;
+  if (baseLatency >= 0.1) {
+    baseLatency *= 1000;
+  }
+  else {
+    // is a NaN?
+    baseLatency = -1;
+  }
+}
+
 /***************************************************************/
 function playOscillator() {
   // starting an oscillator on a user gesture will enable audio
@@ -143,6 +167,7 @@ function touchStarted() {
     afterMicLvl *= 100;
   }
   playOscillator();
+  getBaseLatency();
   return false;
 }
 // touchMoved(), mouseDragged()
@@ -195,6 +220,7 @@ function draw() {
   text("audioDevice2 kind: " + pineAudio2.kind, 10, 364);
   text("audioDevice2 ID: " + pineAudio2.deviceId, 10, 380);
   // output audio various
-  text("outLatency (ms): " + outLatency * 1000, 10, 400);
+  text("outLatency (ms): " + outLatency, 10, 400); // device has NaN
   text("dest channel: " + destChannel, 10, 416);
+  text("baseLatency (ms): " + baseLatency, 10, 432);
 }
