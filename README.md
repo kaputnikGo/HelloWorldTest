@@ -16,7 +16,7 @@ This will hopefully serve as a template for some utility/helper app/webapps for 
 - DOM objects position relative to phone screen origin, not P5 canvas
 
 **VERSION**
-1.0.7
+1.0.8
 
 **TODO**
 - css to navbar
