@@ -15,11 +15,11 @@ let samRate, mainVol, micLevel, afterMicLvl;
 // audio device reporting vars
 let deviceID, deviceLabel, deviceGroup, deviceKind;
 // pinephone has 3 sources, get info on them
-let pineAudio0, pineAudio1, pineAudio2;
+let pineAudio0, pineAudio1, pineAudio2, isPine;
 // audio output switching, get speakers and headphone
 let destOut, outLatency, baseLatency;
 // output node
-let destChannel;
+let destChannel, soundNode, soundGain, soundInNode, soundOutNode;
 // output osc vars
 let osc, playing, freq, amp;
 
@@ -31,6 +31,7 @@ function setup() {
   // test it by checking state
   ctxReport = audioCtx.state;
 
+  isPine = false; // default, for www debug, non-pine, errors etc
   audioIn = new p5.AudioIn();
   if (audioIn) inReport = "HAS IN";
   else inReport = "NO IN";
@@ -66,8 +67,20 @@ function setup() {
   // channelInterpretation "speakers",
   // tail-time No
   destChannel = destOut.channelInterpretation;
-  audioOut = p5.soundOut;
 
+  // do what with this...
+  audioOut = p5.soundOut;
+  soundNode = audioOut._silentNode;
+  soundGain = audioOut._silentNode.gain.value; // object gain node
+  soundInNode = audioOut.input.gain.value; // object gain node
+  if (soundInNode >= 0.1) {
+    soundInNode *= 100);
+  }
+  soundOutNode = audioOut.output.gain.value; // object gain node - master vol?
+  if (soundOutNode >= 0.1) {
+    soundOutNode *= 100);
+  }
+  
   // output osc
   // set up an osc for output check
   osc = new p5.Oscillator('sine');
@@ -119,14 +132,19 @@ function enumSources(pinePhoneList) {
     pineAudio0 = pinePhoneList[0];
     pineAudio1 = pinePhoneList[1];
     pineAudio2 = pinePhoneList[2];
+    isPine = true;
+  }
+  else {
+    // error, www, or not a pinephone
+    isPine = false;
   }
 }
 
 function getOutLatency() {
   // device getting NaN on outputLatency
   outLatency = audioCtx.outputLatency; // estimation in seconds
-  if (outLatency == NaN) {
-    outLatency == -1;
+  if (isNaN(outLatency)) {
+    outLatency = -1;
   }
   else if (outLatency >= 0.001) {
     outLatency *= 1000;
@@ -140,8 +158,8 @@ function getBaseLatency() {
   // only read when actual audio running
   // reports in secs: 0.12345678
   baseLatency = audioCtx.baseLatency;
-  if (baseLatency == NaN) {
-    baseLatency == -1;
+  if (isNaN(baseLatency) {
+    baseLatency = -1;
   }
   else if (baseLatency >= 0.001) {
     baseLatency *= 1000;
@@ -168,10 +186,14 @@ function touchStarted() {
   if (audioCtx.state !== "running") {
     audioCtx.resume();
   }
-  afterMicLvl = audioIn.getLevel();
-  if (afterMicLvl >= 0.1) {
+  afterMicLvl = audioIn.getLevel(); // 0.0 - 1.0
+  if (afterMicLvl >= 0.01) {
     afterMicLvl *= 100;
   }
+  else {
+    afterMicLvl = -1;
+  }
+
   playOscillator();
   getBaseLatency();
   return false;
@@ -195,7 +217,7 @@ function draw() {
   background(200);
   text(int(getFrameRate()) + " fps", 10, 16);
   // osc for output
-  freq = constrain(map(mouseX, 0, width, 100, 500), 100, 500);
+  freq = round(constrain(map(mouseX, 0, width, 100, 500), 100, 500), 3);
   if (playing) {
     // smooth the transitions by 0.1 seconds
     osc.freq(freq, 0.1);
@@ -207,26 +229,41 @@ function draw() {
   text("ctxReport: " + ctxReport, 10, 80);
   text("autoSource: " + autoSource, 10, 96);
   text("userSource: " + userSource, 10,112);
+  //
   text("mediaInfo: " + mediaInfo, 10, 128); // is Object
   text("deviceID: " + deviceID, 10, 144);
   text("deviceLabel: " + deviceLabel, 10, 160);
   text("deviceGroup: " + deviceGroup, 10, 176);
   text("deviceKind: " + deviceKind, 10, 192);
-  text("micLevel: " + micLevel, 10, 208);
-  text("after micLvl: " + afterMicLvl, 10, 224);
+  //
+  text("micLevel: " + round(micLevel, 3), 10, 208);
+  text("after micLvl: " + round(afterMicLvl,3), 10, 224);
   // output vars here
   text("sampleRate: " + samRate, 10 , 240);
   text("main vol: " + mainVol, 10, 256);
-  text("freq: " + freq, 10, 272);
+  text("freq: " + round(freq,3), 10, 272);
   // mediaDeviceInfo for the 3 sources
-  text("audioDevice0 kind: " + pineAudio0.kind, 10, 300);
-  text("audioDevice0 ID: " + pineAudio0.deviceId, 10, 316);
-  text("audioDevice1 kind: " + pineAudio1.kind, 10, 332);
-  text("audioDevice1 ID: " + pineAudio1.deviceId, 10, 348);
-  text("audioDevice2 kind: " + pineAudio2.kind, 10, 364);
-  text("audioDevice2 ID: " + pineAudio2.deviceId, 10, 380);
+  if (isPine) {
+    text("audioDevice0 kind: " + pineAudio0.kind, 10, 300);
+    text("audioDevice0 ID: " + pineAudio0.deviceId, 10, 316);
+    text("audioDevice1 kind: " + pineAudio1.kind, 10, 332);
+    text("audioDevice1 ID: " + pineAudio1.deviceId, 10, 348);
+    text("audioDevice2 kind: " + pineAudio2.kind, 10, 364);
+    text("audioDevice2 ID: " + pineAudio2.deviceId, 10, 380);
+  }
+  else {
+    text("[Error in audioDevice[3] enum...", 10, 300);
+    text("... or www, or not a pinephone]", 10, 380);
+  }
+
   // output audio various
-  text("outLatency (ms): " + outLatency, 10, 400); // device has NaN
+  text("outLatency (ms): " + round(outLatency,3), 10, 400); // device can has NaN
   text("dest channel: " + destChannel, 10, 416);
-  text("baseLatency (ms): " + baseLatency, 10, 432); // device has NaN
+  text("baseLatency (ms): " + round(baseLatency, 3), 10, 432); // device can has NaN
+  text("destOut: " + destOut, 10, 448); // is Object
+  text("audioOut: " + audioOut, 10, 464); // is Object
+  text("audioOut._silent.node: " + soundNode, 10, 480);
+  text("audioOut._silent.node.gain: " + soundGain, 10, 496);
+  text("audioOut.input.gain: " + soundInNode, 10, 514);
+  text("audioOut.output.gain: " + soundOutNode, 10, 530);
 }
