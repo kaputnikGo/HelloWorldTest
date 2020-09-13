@@ -74,13 +74,13 @@ function setup() {
   soundGain = audioOut._silentNode.gain.value; // object gain node
   soundInNode = audioOut.input.gain.value; // object gain node
   if (soundInNode >= 0.1) {
-    soundInNode *= 100);
+    soundInNode *= 100;
   }
   soundOutNode = audioOut.output.gain.value; // object gain node - master vol?
   if (soundOutNode >= 0.1) {
-    soundOutNode *= 100);
+    soundOutNode *= 100;
   }
-  
+
   // output osc
   // set up an osc for output check
   osc = new p5.Oscillator('sine');
@@ -158,7 +158,7 @@ function getBaseLatency() {
   // only read when actual audio running
   // reports in secs: 0.12345678
   baseLatency = audioCtx.baseLatency;
-  if (isNaN(baseLatency) {
+  if (isNaN(baseLatency)) {
     baseLatency = -1;
   }
   else if (baseLatency >= 0.001) {
