@@ -31,6 +31,11 @@ This will hopefully serve as a template for some utility/helper app/webapps for 
 - glitches in output sounds like buffer errors
 - add fps counter val to an oscillator...
 
+headphone/speaker switch via alsamixer (swap for which is wanted):
+> #!/bin/sh
+> amixer -c 0 set 'Headphone' unmute
+> amixer -c 0 set 'Line Out' mute
+
 **CHANGES**
 - nav bar with clunky css, multiple pages for separate functions
 - different sound tests, touch control tests
