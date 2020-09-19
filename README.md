@@ -14,12 +14,14 @@ This will hopefully serve as a template for some utility/helper app/webapps for 
 - minimal P5 touch diameter: 60
 - holding touch on P5 results in long-touch OS popup of "save image..."
 - DOM objects position relative to phone screen origin, not P5 canvas
+- working clickable --ssh <ip address>
+- have unmuted headphone in alsamixer and set vol to reasonable level
+- headphones + speaker output at same time so need to reduce speaker vol manually
 
 **VERSION**
 1.0.8
 
 **TODO**
-- adb/ssh install to device ffs
 - UI controls in P5 for audio routing etc
 - audio out info (sep page?)
 - test mic access via p5js
@@ -34,6 +36,7 @@ This will hopefully serve as a template for some utility/helper app/webapps for 
 - different sound tests, touch control tests
 - audio reporting page
 - P5 function css styles apply
+- got ssh working and click installable via ssh
 
 ## License
 
