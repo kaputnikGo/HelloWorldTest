@@ -33,8 +33,11 @@ This will hopefully serve as a template for some utility/helper app/webapps for 
 
 headphone/speaker switch via alsamixer (swap for which is wanted):
 > #!/bin/sh
+
 > amixer -c 0 set 'Headphone' unmute
+
 > amixer -c 0 set 'Line Out' mute
+
 
 **CHANGES**
 - nav bar with clunky css, multiple pages for separate functions
