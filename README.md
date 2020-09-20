@@ -15,11 +15,11 @@ This will hopefully serve as a template for some utility/helper app/webapps for 
 - holding touch on P5 results in long-touch OS popup of "save image..."
 - DOM objects position relative to phone screen origin, not P5 canvas
 - working clickable --ssh <ip address>
-- have unmuted headphone in alsamixer and set vol to reasonable level
-- headphones + speaker output at same time so need to reduce speaker vol manually
+- have unmuted headphone in alsamixer and set vol to reasonable level - use QML
+- headphones + speaker output at same time so need to reduce speaker vol manually - use QML
 
 **VERSION**
-1.0.8
+1.0.9
 
 **TODO**
 - UI controls in P5 for audio routing etc
@@ -33,10 +33,12 @@ This will hopefully serve as a template for some utility/helper app/webapps for 
 
 headphone/speaker switch via alsamixer (swap for which is wanted):
 > #!/bin/sh
-
+>
 > amixer -c 0 set 'Headphone' unmute
-
+>
 > amixer -c 0 set 'Line Out' mute
+>
+> or bash -c "amixer -c 0 set 'Headphone' unmute"
 
 
 **CHANGES**

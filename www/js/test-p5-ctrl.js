@@ -98,7 +98,7 @@ function btn2Pressed() {
 function btn3Pressed() {
   // something
   resultText = "btn3 touched";
-  infoText = "something 3";
+  infoText = "need to use QML for bash";
 }
 
 /*****************************************************/
