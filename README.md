@@ -8,8 +8,14 @@ Using LinuxMint 20, Atom Editor, Clickable UT etc to create some test apps for P
 
 This will hopefully serve as a template for some utility/helper app/webapps for installing on the pinephone.
 
+Update to Ubuntu Touch Version 8 on test device has broken running P5 due to proper web audio policy:
+- see : https://developers.google.com/web/updates/2017/09/autoplay-policy-changes#webaudio
+- need to call resume() after user /gesture/interact with page first.
+- see P5js userStartAudio() method https://p5js.org/reference/#/p5/userStartAudio
+
 **NOTES**
-- Releases are simply a clumsy way of installing .click file on device via www instead of using adb/ssh
+- Pinephone v1.2a running Ubuntu Touch version 8
+- Releases are simply a clumsy way of installing .click file on device via www instead of using ssh
 - pinephone P5 canvas screen width: 700
 - minimal P5 touch diameter: 60
 - holding touch on P5 results in long-touch OS popup of "save image..."
@@ -17,9 +23,10 @@ This will hopefully serve as a template for some utility/helper app/webapps for 
 - working clickable --ssh <ip address>
 - have unmuted headphone in alsamixer and set vol to reasonable level - use QML
 - headphones + speaker output at same time so need to reduce speaker vol manually - use QML
+- audio is now very scratchy sounding (UT vers.8)
 
 **VERSION**
-1.0.9
+1.0.10
 
 **TODO**
 - UI controls in P5 for audio routing etc
@@ -47,6 +54,7 @@ headphone/speaker switch via alsamixer (swap for which is wanted):
 - audio reporting page
 - P5 function css styles apply
 - got ssh working and click installable via ssh
+- updated P5/html files for proper web audio
 
 ## License
 

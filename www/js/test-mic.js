@@ -11,10 +11,19 @@ function setup() {
   createCanvas(710, 400);
   noFill();
 
+  // mimics the autoplay policy
+  getAudioContext().suspend();
+
   mic = new p5.AudioIn();
-  mic.start();
+  //mic.start();
   fft = new p5.FFT();
   fft.setInput(mic);
+}
+
+function touchStarted() {
+  // comply with webaudio autoplay
+  userStartAudio();
+  mic.start();
 }
 
 function draw() {

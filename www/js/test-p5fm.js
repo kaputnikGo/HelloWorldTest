@@ -72,14 +72,17 @@ function setup() {
   let cnv = createCanvas(800, 400);
   noFill();
 
+  // mimics the autoplay policy
+  getAudioContext().suspend();
+
   carrier = new p5.Oscillator('sine');
   carrier.amp(0); // set amplitude
   carrier.freq(carrierBaseFreq); // set frequency
-  carrier.start(); // start oscillating
+  //carrier.start(); // start oscillating
 
   // try changing the type to 'square', 'sine' or 'triangle'
   modulator = new p5.Oscillator('sawtooth');
-  modulator.start();
+  //modulator.start();
 
   // add the modulator's output to modulate the carrier's frequency
   modulator.disconnect();
@@ -141,7 +144,12 @@ function toggleAudio(cnv) {
     carrier.amp(1.0, 0.01);
   });
   cnv.touchStarted(function() {
+    // comply with webaudio autoplay
+    userStartAudio();
     carrier.amp(1.0, 0.01);
+    carrier.start(); // start oscillating
+    modulator.start();
+
   });
   cnv.mouseOut(function() {
     carrier.amp(0.0, 1.0);

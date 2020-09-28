@@ -13,16 +13,25 @@ let osc, fft;
 function setup() {
   createCanvas(720, 256);
 
+  // mimics the autoplay policy
+  getAudioContext().suspend();
+
   osc = new p5.TriOsc(); // set frequency and type
   osc.amp(0.5);
 
   fft = new p5.FFT();
+  //osc.start();
+}
+
+function touchStarted() {
+  // comply with webaudio autoplay
+  userStartAudio();
   osc.start();
 }
 
 function draw() {
   background(255);
-  text(int(getFrameRate()) + " fps", 10, 16); 
+  text(int(getFrameRate()) + " fps", 10, 16);
   let waveform = fft.waveform(); // analyze the waveform
   beginShape();
   strokeWeight(5);
